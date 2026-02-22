@@ -1,0 +1,276 @@
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<title>StyleExpert</title>
+<link href=stylesheet_1.css rel=stylesheet>
+<link rel="icon" href="images/icon.png"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<meta name=referrer content=no-referrer>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv=content-security-policy
+    content="default-src 'none'; connect-src 'self' data: blob:; font-src 'self' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://huggingface.co; style-src 'self' 'unsafe-inline' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; frame-src 'self' data: blob:; media-src 'self' data: blob:; script-src 'self' 'unsafe-inline' data: blob:; object-src 'self' data: blob:;">
+<style>
+    img[src="data:,"],
+    source[src="data:,"] {
+        display: none !important
+    }
+</style>
+
+</head>
+
+<body>
+    <div class="content">
+        <h1><strong>StyleExpert: Mixture of Style Experts for Diverse Image Stylization</strong></h1>
+        <p id="authors">
+            <a href="#" title="Shihao Zhu's homepage">Shihao Zhu<sup>1</sup></a>
+            <a href="#" title="Ziheng Ouyang's homepage">Ziheng Ouyang<sup>1</sup></a>
+            <a href="#" title="Yijia Kang's homepage">Yijia Kang<sup>1</sup></a>
+            <a href="#" title="Qilong Wang's homepage">Qilong Wang<sup>3</sup></a>
+            <br>
+            <a href="#" title="Mi Zhou's homepage">Mi Zhou<sup>4</sup></a>
+            <a href="#" title="Bo Li's homepage">Bo Li<sup>4</sup></a>
+            <a href="#" title="Ming-Ming Cheng's homepage">Ming-Ming Cheng<sup>1,2</sup></a>
+            <a href="#" title="Qibin Hou's homepage">Qibin Hou<sup>1,2</sup></a>
+            <br><br>
+            <span style="font-size:20px; padding-right:20px">
+            <sup>1</sup>VCIP, CS, Nankai University  &nbsp;&nbsp;
+            <sup>2</sup>NKIARI, Shenzhen Futian
+            <br>
+            <sup>3</sup>Tianjin University &nbsp;&nbsp;
+            <sup>4</sup>vivo
+            </span>
+        </p>
+        
+
+        <div style="text-align:center; margin-top:20px;">
+            
+            <a href="#" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style="display:inline-flex; align-items:center; vertical-align:middle; padding:6px 18px; margin:5px; background:#333; color:white; border-radius:20px; text-decoration:none; font-size:15px;">
+                <i class="ai ai-arxiv" style="margin-right:6px; font-size:18px;"></i> 
+                Paper
+            </a>
+
+            <a href="#" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style="display:inline-flex; align-items:center; vertical-align:middle; padding:6px 18px; margin:5px; background:#333; color:white; border-radius:20px; text-decoration:none; font-size:15px;">
+                <i class="fa-brands fa-github" style="margin-right:6px; font-size:18px;"></i> 
+                Code
+            </a>
+
+            
+            <a href="#" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style="display:inline-flex; align-items:center; vertical-align:middle; padding:6px 18px; margin:5px; background:#333; color:white; border-radius:20px; text-decoration:none; font-size:15px;">
+                <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HF" style="width: 20px; margin-right: 6px;">
+                Demo
+            </a>
+            
+            <a href="#" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style="display:inline-flex; align-items:center; vertical-align:middle; padding:6px 18px; margin:5px; background:#333; color:white; border-radius:20px; text-decoration:none; font-size:15px;">
+                <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HF" style="width: 20px; margin-right: 6px;">
+                Model
+            </a>
+
+            <a href="#" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style="display:inline-flex; align-items:center; vertical-align:middle; padding:6px 18px; margin:5px; background:#333; color:white; border-radius:20px; text-decoration:none; font-size:15px;">
+                <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HF" style="width: 20px; margin-right: 6px;">
+                StyleExpert-500K
+            </a>
+        </div>
+
+
+        <br>
+        <div class="top-images">
+            <img class="summary-img" src="images/teaser.png" style="width:100%" alt="Teaser Image">
+        </div>
+    </div>
+
+    <div class=content>
+        <h2 style=text-align:center>Abstract</h2>
+        <p>Diffusion-based stylization has advanced significantly, yet existing methods are limited to color-driven transformations, neglecting complex semantics and material details. We introduce StyleExpert, a semantic-aware framework based on Mixture of Experts (MoE). Our framework employs a unified style encoder, trained on our large-scale dataset of content-style-stylized triplets, to embed diverse styles into a consistent latent space. This embedding is then used to condition a similarity-aware gating mechanism, which dynamically routes styles to specialized experts within the MoE architecture. Leveraging this MoE architecture, our method adeptly handles diverse styles spanning multiple semantic levels, from shallow textures to deep semantics. Extensive experiments show that StyleExpert outperforms existing approaches in preserving semantics and material details, while generalizing to unseen styles.</p>
+    </div>
+
+    <div class=content>
+        <h2 style=text-align:center>Visual Comparison on Unseen Styles</h2>
+        <img class=summary-img src="images/quality_unseen.png" style=width:100% alt="Qualitative comparison">
+    </div>
+
+    <div class="content">
+        <h2 style="text-align:center">Diverse Image Stylization Results</h2>
+        <div class="slider-container" data-slider-id="1">
+            <div class="slider-images">
+                <div class="slide">
+                    <img class="summary-img" src="images/additional_visual_results_1.png" style="width:100%" alt="Visual Result 1">
+                </div>
+                <div class="slide">
+                    <img class="summary-img" src="images/additional_visual_results_2.png" style="width:100%" alt="Visual Result 2">
+                </div>
+                <div class="slide">
+                    <img class="summary-img" src="images/additional_visual_results_3.png" style="width:100%" alt="Visual Result 3">
+                </div>
+                <div class="slide">
+                    <img class="summary-img" src="images/additional_visual_results_4.png" style="width:100%" alt="Visual Result 4">
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev" onclick="moveSlide(-1, 1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 1)">&#10095;</button>
+            </div>
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(1, 1)"></span>
+                <span class="dot" onclick="currentSlide(2, 1)"></span>
+                <span class="dot" onclick="currentSlide(3, 1)"></span>
+                <span class="dot" onclick="currentSlide(4, 1)"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class=content>
+        <h2 style=text-align:center>Method</h2>
+        <img class=summary-img src="images/method.png" style=width:100% alt="Method Overview">
+        <p>Overview of the proposed StyleExpert. Our method comprises two training stages. First, a style encoder is trained with the InfoNCE loss to learn discriminative style representations for faster convergence. Second, the pre-trained encoder provides style priors to guide the router network in training MoE LoRA adapters, enabling each layer to dynamically select the most suitable experts for diverse styles.</p>
+    </div>
+
+    <div class=content>
+        <h2 style=text-align:center>Dataset Curation (StyleExpert-500K)</h2>
+        <img class=summary-img src="images/dataset_overview.png" style=width:100% alt="Dataset Overview">
+        <p style="margin-top: 15px;"><b>Data Generation Pipeline:</b></p>
+        <img class=summary-img src="images/dataset.png" style=width:100% alt="Dataset Pipeline">
+    </div>
+
+    <script>
+        let slideIndex = [1, 1];
+
+        function showSlide(n, sliderId) {
+            let slides = document.querySelectorAll(`[data-slider-id="${sliderId}"] .slider-images .slide`);
+            let dots = document.querySelectorAll(`[data-slider-id="${sliderId}"] .dot`);
+
+            if (n > slides.length) slideIndex[sliderId - 1] = 1;
+            if (n < 1) slideIndex[sliderId - 1] = slides.length;
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            slides[slideIndex[sliderId - 1] - 1].style.display = "block";
+            dots[slideIndex[sliderId - 1] - 1].classList.add("active");
+        }
+
+        function moveSlide(n, sliderId) {
+            slideIndex[sliderId - 1] += n;
+            showSlide(slideIndex[sliderId - 1], sliderId);
+        }
+
+        function currentSlide(n, sliderId) {
+            slideIndex[sliderId - 1] = n;
+            showSlide(slideIndex[sliderId - 1], sliderId);
+        }
+
+        document.querySelectorAll('.slider-container').forEach((container, index) => {
+            showSlide(slideIndex[index], index + 1);
+        });
+    </script>
+
+    <style>
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .slider-images .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .image-caption {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .slider-controls .prev {
+            position: absolute;
+            left: -47px;
+        }
+
+        .slider-controls .next {
+            position: absolute;
+            right: -47px;
+        }
+
+        .slider-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.2);
+        }
+
+        .slider-controls button:focus {
+            outline: none;
+        }
+
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #717171;
+        }
+    </style>
+
+</body>
+</html>
