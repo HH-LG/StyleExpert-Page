@@ -97,8 +97,8 @@
     </div>
 
     <div class=content>
-        <h2 style=text-align:center>Abstract</h2>
-        <p>Diffusion-based stylization has advanced significantly, yet existing methods are limited to color-driven transformations, neglecting complex semantics and material details. We introduce StyleExpert, a semantic-aware framework based on Mixture of Experts (MoE). Our framework employs a unified style encoder, trained on our large-scale dataset of content-style-stylized triplets, to embed diverse styles into a consistent latent space. This embedding is then used to condition a similarity-aware gating mechanism, which dynamically routes styles to specialized experts within the MoE architecture. Leveraging this MoE architecture, our method adeptly handles diverse styles spanning multiple semantic levels, from shallow textures to deep semantics. Extensive experiments show that StyleExpert outperforms existing approaches in preserving semantics and material details, while generalizing to unseen styles.</p>
+        <h2 style="text-align:center">Abstract</h2>
+        <p>Diffusion-based stylization has advanced significantly, yet existing methods are limited to color-driven transformations, neglecting complex semantics and material details. We introduce <strong>StyleExpert</strong>, a semantic-aware framework based on Mixture of Experts (MoE). Our framework employs a unified style encoder, trained on our large-scale dataset of content-style-stylized triplets, to embed diverse styles into a consistent latent space. This embedding is then used to condition a similarity-aware gating mechanism, which dynamically routes styles to specialized experts within the MoE architecture. Leveraging this MoE architecture, our method adeptly handles diverse styles spanning multiple semantic levels, from shallow textures to deep semantics. Extensive experiments show that StyleExpert outperforms existing approaches in preserving semantics and material details, while generalizing to unseen styles.</p>
     </div>
 
     <div class=content>
@@ -146,7 +146,12 @@
     <div class=content>
         <h2 style=text-align:center>Dataset Curation (StyleExpert-500K)</h2>
         <img class=summary-img src="images/dataset_overview.png" style=width:100% alt="Dataset Overview">
-        <p style="margin-top: 15px;"><b>Data Generation Pipeline:</b></p>
+        <p>
+            To overcome the color-semantic imbalance in existing datasets, we construct <strong>StyleExpert-500K</strong>, containing approximately 500,000 content-style-stylized triplets. 
+        </p>
+        <p>
+            We leverage 209 high-quality, style-centric LoRA models from the Hugging Face community. Using a large Vision-Language Model (Qwen), we carefully rewrite image captions to remove confounding stylistic information, ensuring the prompts describe only the objective content. A rigorous VLM-based filtering process is then applied to prune results with poor stylization or layout degradation, yielding a highly coherent triplet dataset that strongly prioritizes semantic information (such as texture and material) over superficial color features.
+        </p>
         <img class=summary-img src="images/dataset.png" style=width:100% alt="Dataset Pipeline">
     </div>
 
